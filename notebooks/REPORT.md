@@ -51,11 +51,11 @@ Nguồn evidence: `segmentation_predictions.json` và `visuals/segmentation_pred
 
 `ảnh thô → guideline → ground truth → huấn luyện → prediction → QC/rework`
 
-| Tác vụ | Đơn vị/định dạng ground truth | Lỗi hoặc điểm mơ hồ quan sát được | Annotator làm gì? | Reviewer xem gì? |
-| --- | --- | --- | --- | --- |
-| Phân loại ảnh | Một nhãn lớp (class_id + class_name) cho toàn ảnh | Ảnh kitchen bị model đoán thành "gong" — sai lớp hoàn toàn; ảnh nhiều vật không rõ chủ thể chính | Chọn nhãn đúng theo guideline, không chép score của model | Nhãn có khớp chủ thể chính không, có nhầm lớp gần nghĩa không |
-| Phát hiện vật thể | Bounding box xyxy + class_id cho từng object | Person bị cắt mép (x_min ≈ 0) — không rõ có nên gán nhãn không; bowl nhỏ score 0.38 khó xác định thật hay nhiễu | Vẽ box khít từng object, gán đúng lớp, flag object bị cắt mép | Box có bao đúng không, có bỏ sót object không, truncated/occluded xử lý đúng chưa |
-| Instance segmentation | Polygon pixel + class_id + instance_id cho từng instance | Polygon 348 điểm khó kiểm tra thủ công; cup nhỏ ở góc tối dễ bị bỏ sót | Vẽ polygon bám biên, tạo instance riêng cho mỗi object dù cùng lớp | Polygon có bám đúng viền không, có trộn lẫn hai instance không, có bỏ sót object nhỏ không |
+| Tác vụ                | Đơn vị/định dạng ground truth                            | Lỗi hoặc điểm mơ hồ quan sát được                                                                               | Annotator làm gì?                                                  | Reviewer xem gì?                                                                           |
+| --------------------- | -------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| Phân loại ảnh         | Một nhãn lớp (class_id + class_name) cho toàn ảnh        | Ảnh kitchen bị model đoán thành "gong" — sai lớp hoàn toàn; ảnh nhiều vật không rõ chủ thể chính                | Chọn nhãn đúng theo guideline, không chép score của model          | Nhãn có khớp chủ thể chính không, có nhầm lớp gần nghĩa không                              |
+| Phát hiện vật thể     | Bounding box xyxy + class_id cho từng object             | Person bị cắt mép (x_min ≈ 0) — không rõ có nên gán nhãn không; bowl nhỏ score 0.38 khó xác định thật hay nhiễu | Vẽ box khít từng object, gán đúng lớp, flag object bị cắt mép      | Box có bao đúng không, có bỏ sót object không, truncated/occluded xử lý đúng chưa          |
+| Instance segmentation | Polygon pixel + class_id + instance_id cho từng instance | Polygon 348 điểm khó kiểm tra thủ công; cup nhỏ ở góc tối dễ bị bỏ sót                                          | Vẽ polygon bám biên, tạo instance riêng cho mỗi object dù cùng lớp | Polygon có bám đúng viền không, có trộn lẫn hai instance không, có bỏ sót object nhỏ không |
 
 ## 5. An toàn dữ liệu
 
